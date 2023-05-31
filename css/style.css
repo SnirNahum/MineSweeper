@@ -1,0 +1,25 @@
+* {
+  margin: auto;
+}
+h1,
+p {
+  text-align: center;
+  margin-top: 50px;
+}
+table {
+  margin-top: 50px;
+}
+.board td {
+  margin-top: 50px;
+  width: 30px;
+  height: 30px;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+td:hover {
+  background-color: #ccc;
+}
