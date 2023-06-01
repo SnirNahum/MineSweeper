@@ -15,7 +15,7 @@ function getRandomInt(min, max) {
 //   var timer = 0;
 //   setInterval(function () {
 //     timer++;
-//     var elP = document.querySelector(".gameTime");
+//     var elP = document.querySelector(".gameTime span");
 //     elP.innerText = timer;
 //   }, 1000); // Updates the timer every second
 // }
