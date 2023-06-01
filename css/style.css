@@ -26,3 +26,7 @@ table {
 td:hover {
   background-color: #ccc;
 }
+
+.hidden {
+  display: none;
+}

@@ -14,8 +14,8 @@ const gameIsOver = "🤯";
 var lives;
 var score;
 
-function onInit() {
-  gLevel = { SIZE: 4, MINES: 2 };
+function onInit(SIZE = 4, MINES = 2) {
+  gLevel = { SIZE, MINES };
   mineCount = gLevel.MINES;
   gGame = {
     isOn: true,
@@ -62,8 +62,8 @@ function renderBoard(board) {
     for (var j = 0; j < gLevel.SIZE; j++) {
       const cell = board[i][j];
       const className = `cell cell-${i}-${j}`;
-      strHTML += `<td class="${className}" onclick="onCellClicked(event, ${i}, ${j}, this)" 
-      oncontextmenu="onCellMarked(${i}, ${j}, this); return false;">${""}</td>`;
+      strHTML += `<td class="${className} " onclick="onCellClicked(event, ${i}, ${j}, this)" 
+      oncontextmenu="onCellMarked(${i}, ${j}, this); return false;"></td>`;
     }
 
     strHTML += `</tr>`;
@@ -84,6 +84,8 @@ function onCellClicked(event, cellI, cellJ, elCell) {
   } else {
     gGame.isOn === false;
   }
+
+  console.log(board);
 }
 
 function MinesNegsCount(cellI, cellJ) {
@@ -103,7 +105,7 @@ function MinesNegsCount(cellI, cellJ) {
 }
 
 function setMines(cell) {
-  if (Math.random() > 0.5 && mineCount > 0) {
+  if (Math.random() > 0.7 && mineCount > 0) {
     cell.isMine = true;
     mineCount--;
   } else {
@@ -112,10 +114,10 @@ function setMines(cell) {
 }
 
 function checkGameOver() {
-  var status = "";
   if (lives.length === 0 || gGame.markedCount === gLevel.MINES) {
-    status = lives.length === 0 ? "you lose!" : "you WON!";
+    var status = lives.length === 0 ? "you lose!" : "you WON!";
     gGame.isOn = false;
+
     alert(status);
     return;
   }
@@ -145,12 +147,14 @@ function isMine(elCell) {
 
 function restartButton() {
   score = document.querySelector(".score span");
-  score = 0;
-  onInit();
+  score.innerHTML = 0;
+  console.log(gLevel);
+  onInit(gLevel.SIZE,gLevel.MINES);
 }
 
 function onCellMarked(i, j, elBtn) {
   if (gGame.isOn) {
+    if (board[i][j].isMarked && board[i][j].isMine) return;
     if (elBtn.innerHTML === EMPTY_CELL) {
       elBtn.innerHTML = FLAG;
       board[i][j].isMarked = true;
