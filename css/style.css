@@ -2,10 +2,13 @@
   margin: auto;
 }
 h1,
-p {
+p,
+.features,
+button {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
+
 table {
   margin-top: 50px;
 }
@@ -16,7 +19,6 @@ table {
   background-color: #f1f1f1;
   border: 2px solid #ccc;
   border-radius: 8px;
-  overflow: hidden;
   text-align: center;
 }
 
