@@ -5,6 +5,7 @@ var board;
 var gGame;
 var gLevel;
 var mineCount;
+var minesCountForWin;
 const MINE = "💣";
 const FLAG = "🚩";
 const EMPTY_CELL = "";
@@ -16,6 +17,7 @@ var score;
 
 function onInit(SIZE = 4, MINES = 3) {
   gLevel = { SIZE, MINES };
+  minesCountForWin = 0;
   mineCount = gLevel.MINES;
   lives = createLives();
 
@@ -132,9 +134,8 @@ function createLives() {
 function isMine(cellI, cellJ) {
   lives.pop("");
   gGame.minesLeft--;
+  minesCountForWin++;
   checkGameOver();
-  // gLevel.MINES--;
-  // checkGameOver();
 
   var elP = document.querySelector(".lives");
   elP.innerHTML = lives.join("");
@@ -169,18 +170,17 @@ function onCellMarked(i, j, elBtn) {
 }
 
 function checkGameOver() {
-  console.log(gLevel.MINES,gGame.minesLeft,gGame.markedCount);
+  console.log(minesCountForWin, score, gLevel.MINES);
   if (!lives.length) {
     alert("game Over");
     gGame.isOn = false;
     return;
   }
-  // if (
-  //   score === gLevel.MINES ||
-  //   gGame.minesLeft === 0 ||
-  //   gLevel.MINES === gLevel.re + gGame.markedCount
-  // ) 
-  {
+  if (
+    score === gLevel.MINES ||
+    gGame.minesLeft === 0 ||
+    minesCountForWin + score === gLevel.MINES
+  ) {
     alert("You Won!");
     gGame.isOn = false;
 
