@@ -13,6 +13,7 @@ const mineClick = "😅";
 const gameIsOver = "🤯";
 var lives;
 var score;
+// var intervalId;
 
 function onInit(SIZE = 4, MINES = 2) {
   gLevel = { SIZE, MINES };
@@ -21,7 +22,7 @@ function onInit(SIZE = 4, MINES = 2) {
     isOn: true,
     shownCount: 0,
     markedCount: 0,
-    // secsPassed: gameTime(),
+    secsPassed: gameTime(),
   };
   lives = createLives();
 
@@ -119,9 +120,10 @@ function checkGameOver() {
     gGame.isOn = false;
 
     alert(status);
+    stopTimer();
     return;
   }
-
+  stopTimer();
   return;
 }
 
@@ -149,7 +151,8 @@ function restartButton() {
   score = document.querySelector(".score span");
   score.innerHTML = 0;
   console.log(gLevel);
-  onInit(gLevel.SIZE,gLevel.MINES);
+  // stopTimer()
+  onInit(gLevel.SIZE, gLevel.MINES);
 }
 
 function onCellMarked(i, j, elBtn) {

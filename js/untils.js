@@ -11,22 +11,13 @@ function getRandomInt(min, max) {
 
 // function gameTime() {
 //   var timer = 0;
-//   setInterval(function () {
+//   intervalId = setInterval(function () {
 //     timer++;
 //     var elP = document.querySelector(".gameTime span");
 //     elP.innerText = timer;
-//   }, 1000); // Updates the timer every second
+//   }, 1000); 
 // }
 
-// function difficultyLevel(level = "Easy") {
-//   if (level.innerHTML === "Easy") {
-//     difficulty = 16;
-//   }
-//   if (level.innerHTML === "Medium") {
-//     difficulty = 25;
-//   }
-//   if (level.innerHTML === "Hard") {
-//     difficulty = 36;
-//   }
-//   return difficulty;
+// function stopTimer() {
+//   clearInterval(intervalId);
 // }
