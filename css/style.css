@@ -39,7 +39,9 @@ td:hover {
     opacity: 0;
   }
 }
-table .shown {
+table td.shown {
+  width: 30px;
+  height: 30px;
   transition: 0.8s;
   font-size: 15px;
   border: 5px;
@@ -48,7 +50,9 @@ table .shown {
   /* background: red; */
 }
 
-table .shownMine {
+table td.shownMine {
+  width: 30px;
+  height: 30px;
   animation: explosion 0.5s ease-in-out;
   /* transition: 0.8s; */
   font-size: 15px;

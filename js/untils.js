@@ -1,23 +1,34 @@
-function gBoardSize(boardSize) {
-  console.log(boardSize);
-  // return boardSize
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is inclusive and the minimum is inclusive
-}
-
-// function gameTime() {
-//   var timer = 0;
-//   intervalId = setInterval(function () {
-//     timer++;
-//     var elP = document.querySelector(".gameTime span");
-//     elP.innerText = timer;
-//   }, 1000); 
+// function getRandomInt(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min)) + min; //The maximum is inclusive and the minimum is inclusive
 // }
 
-// function stopTimer() {
-//   clearInterval(intervalId);
-// }
+function timer() {
+  var startTime = Date.now();
+
+  interval = setInterval(function () {
+    var elapsedTime = Date.now() - startTime;
+    secondsPlayed = document.querySelector(".timer span").innerHTML = (
+      elapsedTime / 1000
+    ).toFixed(3);
+  }, 100);
+  document.querySelector(".timer span").innerHTML = 0;
+}
+
+function stopTimer() {
+  return (interval = clearInterval(interval));
+}
+
+function mineExplosionSound(audio) {
+  if (audio === "mine") {
+    var ExplosionSound = new Audio(
+      "sounds/mixkit-arcade-game-explosion-2759.wav"
+    );
+    ExplosionSound.play();
+  }
+  if (audio === "a") {
+    var victory = new Audio("sounds/mixkit-animated-small-group-applause-523.wav");
+    victory.play();
+  }
+}
