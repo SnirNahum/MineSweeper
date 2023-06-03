@@ -3,6 +3,9 @@
   text-align: center;
   margin-top: 10px;
 }
+body {
+  background-color: #afaaaa;
+}
 .game-settings {
   font-family: monospace;
   font-size: 20px;
@@ -81,5 +84,5 @@ button:hover {
 }
 
 .darkMode {
-  background-color: rgb(79 79 79)
+  background-color: rgb(79 79 79);
 }

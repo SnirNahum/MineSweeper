@@ -227,9 +227,10 @@ function checkGameOver() {
   if (
     score === gLevel.MINES ||
     gGame.minesLeft === 0 ||
-    minesCountForWin + score === gLevel.MINES
+    minesCountForWin + score === gLevel.MINES ||
+    (gGame.shownCount === gLevel.SIZE ** 2 && lives.length)
   ) {
-    mineExplosionSound("a");
+    mineExplosionSound("victory");
     alert("You Won!");
     gGame.isOn = false;
     stopTimer();

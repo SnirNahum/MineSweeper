@@ -27,7 +27,7 @@ function mineExplosionSound(audio) {
     );
     ExplosionSound.play();
   }
-  if (audio === "a") {
+  if (audio === "victory") {
     var victory = new Audio(
       "sounds/mixkit-animated-small-group-applause-523.wav"
     );
