@@ -13,6 +13,7 @@ const EMPTY_CELL = "";
 const gameIsOn = "😃";
 const mineClick = "😅";
 const gameIsOver = "🤯";
+const heart = "❤️";
 
 var lives;
 var score;
@@ -22,7 +23,7 @@ var timerStarted;
 
 //
 
-function onInit(SIZE = 4, MINES = 3) {
+function onInit(SIZE = 4, MINES = 2) {
   stopTimer();
 
   timerStarted = false;
@@ -104,6 +105,7 @@ function renderBoard(board) {
 }
 
 function onCellClicked(cellI, cellJ, elCell) {
+  console.log(board);
   if (gGame.isOn) {
     if (!timerStarted) {
       timerStarted = true;
@@ -124,14 +126,39 @@ function onCellClicked(cellI, cellJ, elCell) {
 
     if (!board[cellI][cellJ].isMine) {
       elCell.innerHTML = negsCount;
-      if (negsCount === 0) elCell.innerHTML = EMPTY_CELL;
+      if (negsCount === 0) {
+        elCell.innerHTML = EMPTY_CELL;
+        revealEmptyCells(cellI, cellJ);
+      }
       elCell.classList.add("shown");
     }
   }
 }
 
+function revealEmptyCells(cellI, cellJ) {
+  for (var i = cellI - 1; i <= cellI + 1; i++) {
+    if (i < 0 || i >= gLevel.SIZE) continue;
+    for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+      if (j < 0 || j >= gLevel.SIZE) continue;
+      if (board[i][j].isShown) continue;
+      board[i][j].isShown = true;
+      gGame.shownCount++;
+      var negsCount = MinesNegsCount(i, j);
+      board[i][j].minesAroundCount = negsCount;
+      var elCell = document.querySelector(`.cell-${i}-${j}`);
+      elCell.innerHTML = negsCount;
+      if (negsCount === 0) {
+        elCell.innerHTML = EMPTY_CELL;
+        revealEmptyCells(i, j);
+      }
+      elCell.classList.add("shown");
+    }
+  }
+  checkGameOver();
+}
+
 function setMines(cell) {
-  if (Math.random() > 0.5 && mineCount > 0) {
+  if (Math.random() > 0.8 && mineCount > 0) {
     cell.isMine = true;
     mineCount--;
   } else {
@@ -140,7 +167,7 @@ function setMines(cell) {
 }
 
 function createLives() {
-  lives = ["❤️", "❤️", "❤️"];
+  lives = [heart, heart, heart];
   var joinedLives = lives.join("");
   var elLives = document.querySelector(".lives");
   elLives.innerHTML = joinedLives;

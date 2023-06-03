@@ -28,7 +28,14 @@ function mineExplosionSound(audio) {
     ExplosionSound.play();
   }
   if (audio === "a") {
-    var victory = new Audio("sounds/mixkit-animated-small-group-applause-523.wav");
+    var victory = new Audio(
+      "sounds/mixkit-animated-small-group-applause-523.wav"
+    );
     victory.play();
   }
+}
+
+function darkMode() {
+  var darkMode = document.querySelector("body");
+  darkMode.classList.toggle("darkMode");
 }

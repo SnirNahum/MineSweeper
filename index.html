@@ -9,9 +9,10 @@
   </head>
   <body onload="onInit()">
     <h1>Mine Sweeper</h1>
-    <div class="features">
-      <p class="timer">Time: <span>0</span></p>
-      <p class="score">Score: <span>0</span></p>
+    <div class="game-settings">
+      <button class="darkmode" onclick="darkMode()">Dark mode</button>
+      <div class="timer">Time: <span>0</span></div>
+      <div class="score">Score: <span>0</span></div>
       <div class="lives"></div>
 
       <div class="difficulty">
@@ -20,7 +21,7 @@
         <button class="difficulty" onclick="onInit(12,32)">hard</button>
       </div>
       
-      <button onclick="restartButton()"><span>😃</span></button>
+      <button class="restartButton" onclick="restartButton()"><span>😃</span></button>
     </div>
 
     </div>
